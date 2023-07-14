@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:insert="navbar.html">
+</head>
+<body>
+<div class="container">
+    <form action="/edit-car" method="post" th:if = "${avto!=null}" enctype="multipart/form-data">
+        <input type="hidden" name="id" th:value="${avto.id}">
+        <div class="mb-3">
+            <label for="imageId" class="form-label">Image</label>
+            <input type="file" name="image" class="form-control" id="imageId">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">City</label>
+            <input type="text"
+                   class="form-control" id="exampleFormControlInput1"
+                   name="city" placeholder="Enter a city"
+                   th:value="${avto.city}">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput2" class="form-label">Car type</label>
+            <input type="text"
+                   class="form-control" id="exampleFormControlInput2"
+                   name="type" placeholder="Enter a car type"
+                   th:value="${avto.type}">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput3" class="form-label">Mark</label>
+            <input type="text"
+                   class="form-control" id="exampleFormControlInput3"
+                   name="mark" placeholder="Enter a mark"
+                   th:value="${avto.mark}">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput4" class="form-label">Model</label>
+            <input type="text"
+                   class="form-control" id="exampleFormControlInput4"
+                   name="model" placeholder="Enter a model"
+                   th:value="${avto.model}">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput5" class="form-label">Mileage</label>
+            <input type="text"
+                   class="form-control" id="exampleFormControlInput5"
+                   name="mileage" placeholder="Enter a mileage"
+                   th:value="${avto.mileage}">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput6" class="form-label">Volume</label>
+            <input type="text"
+                   class="form-control" id="exampleFormControlInput6"
+                   name="volume" placeholder="Enter a volume"
+                   th:value="${avto.volume}">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput7" class="form-label">Transmission</label>
+            <input type="text"
+                   class="form-control" id="exampleFormControlInput7"
+                   name="transmission" placeholder="Enter a transmission"
+                   th:value="${avto.transmission}">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput8" class="form-label">Color</label>
+            <input type="text"
+                   class="form-control" id="exampleFormControlInput8"
+                   name="color" placeholder="Enter a color"
+                   th:value="${avto.color}">
+        </div>
+        <div class="mb-3">
+            <label for="phoneId" class="form-label">Phone</label>
+            <input type="tel" class="form-control" id="phoneId" name="phone" placeholder="Enter a phone"
+                   th:value="${avto.phone}">
+        </div>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary">Save edit</button>
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete car</button>
+        </div>
+    </form>
+    <div class="modal fade" id="deleteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" th:if = "${avto!=null}">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form th:action="@{'/delete-car'}" method="post">
+                    <input type="hidden" name="id" th:value="${avto.id}">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Delete</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <h3 class="text-center">Delete this car?</h3>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Not now</button>
+                        <button  class="btn btn-danger">Yep</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <h2 th:if="${avto==null}" class="text-center">
+        CAR NOT FOUND
+    </h2>
+</div>
+</body>
+</html>

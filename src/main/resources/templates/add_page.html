@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:insert="navbar.html">
+</head>
+<body>
+<div class="container">
+  <form th:action="@{'/add-car'}" method="post" enctype="multipart/form-data">
+    <div class="mb-3">
+      <label for="imageId" class="form-label">Image</label>
+      <input type="file" name="image" class="form-control" id="imageId">
+    </div>
+    <div class="mb-3">
+      <label for="cityId" class="form-label">City</label>
+      <input type="text" class="form-control" id="cityId" name="city" placeholder="Enter a city">
+    </div>
+    <div class="mb-3">
+      <label for="typeId" class="form-label">Car type</label>
+      <select class="form-select" id="typeId" name="type">
+        <option value="Sedan">Sedan</option>
+        <option value="Coupe">Coupe</option>
+        <option value="Hatchback">Hatchback</option>
+        <option value="Crossover">Crossover</option>
+        <option value="Minivan">Minivan</option>
+        <option value="SUV">SUV</option>
+        <option value="Sports">Sports</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="markId" class="form-label">Mark</label>
+      <input type="text" class="form-control" id="markId" name="mark" placeholder="Enter a mark">
+
+    </div>
+    <div class="mb-3">
+      <label for="modelId" class="form-label">Model</label>
+      <input type="text" class="form-control" id="modelId" name="model" placeholder="Enter a model">
+    </div>
+    <div class="mb-3">
+      <label for="mileageId" class="form-label">Mileage</label>
+      <input type="text" class="form-control" id="mileageId" name="mileage" placeholder="Enter a mileage">
+    </div>
+    <div class="mb-3">
+      <label for="volumeId" class="form-label">Volume</label>
+      <input type="text" class="form-control" id="volumeId" name="volume" placeholder="Enter a volume">
+    </div>
+    <div class="mb-3">
+      <label for="transmissionId" class="form-label">Transmission</label>
+      <input type="text" class="form-control" id="transmissionId" name="transmission" placeholder="Enter a transmission">
+    </div>
+    <div class="mb-3">
+      <label for="colorId" class="form-label">Color</label>
+      <input type="text" class="form-control" id="colorId" name="color" placeholder="Enter a color">
+    </div>
+    <div class="mb-3">
+      <label for="phoneId" class="form-label">Phone</label>
+      <input type="tel" class="form-control" id="phoneId" name="phone" placeholder="Enter a phone">
+    </div>
+    <div class="mb-3">
+      <button class="btn btn-primary" onclick="addCar()">Submit</button>
+    </div>
+  </form>
+</div>
+  <script type="text/javascript">
+    addCar();
+
+    function addCar(){
+      const httpRequest = new XMLHttpRequest();
+      httpRequest.open( "POST", "/api/cars", true);
+      httpRequest.setRequestHeader("Content-Type", "application/json")e
+      let city = document.getElementById("cityId");
+      let type = document.getElementById("typeId");
+      let mark = document.getElementById("markId");
+      let model = document.getElementById("modelId");
+      let mileage = document.getElementById("mileageId");
+      let color = document.getElementById("colorId");
+      let volume = document.getElementById("volumeId");
+      let transmission = document.getElementById("transmissionId")
+
+      let body = {
+          'city': city.value,
+          'type': type.value,
+          'mark': mark.value,
+          'model': model.value,
+          'mileage': mileage.value,
+          'color': color.value,
+          'volume': volume.value,
+          'transmission': transmission.value,
+      }
+      body = JSON.stringify(body)
+      httpRequest.send(body)
+    }
+  </script>
+</body>
+</html>
