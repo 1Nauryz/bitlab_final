@@ -53,17 +53,6 @@ public class CcApplicationTests {
 		verify(model, times(1)).addAttribute(eq("auto"), eq(cars));
 	}
 
-//	@Test
-//	public void testAddCar() {
-//		CarDTO carDTO = new CarDTO();
-//		doNothing().when(carService).addCar(carDTO);
-//
-//		String result = homeController.addCar(carDTO);
-//
-//		assertEquals("redirect:/", result);
-//		verify(carService, times(1)).addCar(carDTO);
-//	}
-
 	@Test
 	public void testCarDetails_WithExistingCar() {
 		Long carId = 1L;

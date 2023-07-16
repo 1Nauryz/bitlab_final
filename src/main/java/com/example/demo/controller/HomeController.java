@@ -70,8 +70,8 @@ public class HomeController {
         return "add_page";
     }
 
-    @PostMapping("/add-car")
     @PreAuthorize("isAuthenticated()")
+    @PostMapping("/add-car")
     public String addCar(@RequestParam(name = "city") String city,
                          @RequestParam(name = "image") MultipartFile image,
                          @RequestParam(name = "type")String type,
@@ -208,9 +208,9 @@ public class HomeController {
             userModel.setFull_name(full_name);
             UserModel newUser = userService.addUser(userModel);
             if (newUser != null){
-                return "redirect:/sign-up-page?success";
-            }else
                 return "redirect:/sign-up-page?emailError";
+            }else
+                return "redirect:/sign-up-page?success";
         }else {
             return "redirect:/sign-up-page?passwordError";
         }

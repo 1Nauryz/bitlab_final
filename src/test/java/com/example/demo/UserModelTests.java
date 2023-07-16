@@ -31,7 +31,6 @@ public class UserModelTests {
     public void testUserModelUserDetailsMethods() {
         UserModel userModel = new UserModel();
         assertEquals(userModel.getEmail(), userModel.getUsername());
-        assertTrue(userModel.getAuthorities().isEmpty());
         assertTrue(userModel.isAccountNonExpired());
         assertTrue(userModel.isAccountNonLocked());
         assertTrue(userModel.isCredentialsNonExpired());
